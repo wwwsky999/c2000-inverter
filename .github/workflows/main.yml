@@ -21,7 +21,7 @@ jobs:
           sudo ./ti_cgt_c2000_22.6.1.LTS_linux-x64_installer.bin
           export C2000_HOME=/home/runner/work/c2000-inverter/c2000-inverter/ti-cgt-c2000_22.6.1.LTS
           export PATH=$PATH:$C2000_HOME/bin
-          
+          export PATH=$PATH:/home/runner/work/c2000-inverter/c2000-inverter/ti-cgt-c2000_22.6.1.LTS/bin
       - name: Install build package dependencies
         run: |
           sudo apt-get update
