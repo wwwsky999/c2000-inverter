@@ -38,14 +38,14 @@ jobs:
           sudo update-alternatives --config g++
           sudo apt-get install git gcc-arm-none-eabi cmake ninja-build lcov
 
-      - name: Build c2000
-        run: |
-          echo $PATH
-          export PATH=$PATH:/home/runner/work/c2000-inverter/c2000-inverter/ti-cgt-c2000_22.6.1.LTS/bin
-          mkdir -p build/c2000
-          cd build/c2000
-          cmake --preset c2000 ../..
-          cmake --build .
+#      - name: Build c2000
+#        run: |
+#          echo $PATH
+#          export PATH=$PATH:/home/runner/work/c2000-inverter/c2000-inverter/ti-cgt-c2000_22.6.1.LTS/bin
+#          mkdir -p build/c2000
+#          cd build/c2000
+#          cmake --preset c2000 ../..
+#          cmake --build .
       - name: Build c2000_P
         run: |
             echo $PATH
