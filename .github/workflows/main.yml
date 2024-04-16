@@ -52,7 +52,7 @@ jobs:
             export PATH=$PATH:/home/runner/work/c2000-inverter/c2000-inverter/ti-cgt-c2000_22.6.1.LTS/bin
             mkdir ~/my-c2000-build-project
             cd ~/my-c2000-build-project
-            cmake -G "Eclipse CDT4 - Ninja" -DPLATFORM=c2000 -DCMAKE_BUILD_TYPE=Release <https://github.com/wwwsky999/c2000-inverter>
+            cmake -G "Eclipse CDT4 - Ninja" -DPLATFORM=c2000 -DCMAKE_BUILD_TYPE=Release <c2000-inverter>
  
       - name: CMake build on host (x86_64)
         run: |
