@@ -19,7 +19,7 @@ jobs:
           wget https://dr-download.ti.com/software-development/ide-configuration-compiler-or-debugger/MD-xqxJ05PLfM/22.6.1.LTS/ti_cgt_c2000_22.6.1.LTS_linux-x64_installer.bin
           sudo chmod +x ./ti_cgt_c2000_22.6.1.LTS_linux-x64_installer.bin
           sudo ./ti_cgt_c2000_22.6.1.LTS_linux-x64_installer.bin
-          export C2000_HOME=/root/ti-cgt-c2000_22.6.1.LTS
+          export C2000_HOME=/home/runner/work/c2000-inverter/c2000-inverter/ti-cgt-c2000_22.6.1.LTS
           export PATH=$PATH:$C2000_HOME/bin
           
       - name: Install build package dependencies
