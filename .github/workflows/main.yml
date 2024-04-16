@@ -1,0 +1,58 @@
+name: build_C2000
+on:
+  push:
+  pull_request:
+
+jobs:
+  build:
+    name: build-linux
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v1
+        with:
+          submodules: recursive
+
+      - name: Install build package dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install gcc-arm-none-eabi ninja-build lcov
+
+          # Force gcc-10 to be the default
+          sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-9 40
+          sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-10 60
+          sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-9 40
+          sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-10 60
+          sudo update-alternatives --config g++
+          sudo apt-get install git gcc-arm-none-eabi cmake ninja-build lcov
+
+      - name: Build c2000
+        run: |
+          mkdir -p build/c2000
+          cd build/c2000
+          cmake --preset c2000 ../..
+          cmake --build .
+      - name: Build c2000_P
+        run: |
+            mkdir ~/my-c2000-build-project
+            cd ~/my-c2000-build-project
+            cmake -G "Eclipse CDT4 - Ninja" -DPLATFORM=c2000 -DCMAKE_BUILD_TYPE=Release <https://github.com/wwwsky999/c2000-inverter>
+ 
+      - name: CMake build on host (x86_64)
+        run: |
+          cd ${{ github.workspace }}
+          mkdir -p build/host
+          cd build/host
+          cmake --preset default ../..
+          cmake --build .
+
+      - name: CMake build for STM32F1
+        run: |
+          cd ${{ github.workspace }}
+          mkdir -p build/stm32f1
+          cd build/stm32f1
+          cmake --preset stm32f1 ../..
+          cmake --build .
+
+              
