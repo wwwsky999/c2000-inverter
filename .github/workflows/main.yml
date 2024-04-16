@@ -9,11 +9,15 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout
+      - name: Install
         uses: actions/checkout@v1
         with:
           submodules: recursive
-
+      - name: Install C2000 CGI TOOL
+        run: |
+          sudo apt -y install build-essential binutils gcc-multilib
+          wget https://dr-download.ti.com/software-development/ide-configuration-compiler-or-debugger/MD-xqxJ05PLfM/22.6.1.LTS/ti_cgt_c2000_22.6.1.LTS_linux-x64_installer.bin
+          sudo  ./ti_cgt_c2000_22.6.1.LTS_linux-x64_installer.bin
       - name: Install build package dependencies
         run: |
           sudo apt-get update
